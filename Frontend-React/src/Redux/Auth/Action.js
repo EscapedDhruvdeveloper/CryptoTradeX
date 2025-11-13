@@ -25,20 +25,33 @@ export const login = (userData) => async (dispatch) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
+    
     if (user.twoFactorAuthEnabled) {
       userData.navigate(`/two-factor-auth/${user.session}`);
+      return;
     }
+    
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
-      console.log("login ", user);
+      // Update API instance with new token
+      api.defaults.headers.common['Authorization'] = `Bearer ${user.jwt}`;
+      console.log("Login successful");
       userData.navigate("/");
     }
+    
     dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: user.jwt });
   } catch (error) {
-    console.log("catch error", error);
+    console.error("Login error:", error);
+    const errorMessage = error.response?.data?.message || 
+                        error.response?.data?.error || 
+                        "Login failed. Please check your credentials.";
+    
     dispatch({
       type: actionTypes.LOGIN_FAILURE,
-      payload: error.response?.data ? error.response.data : error,
+      payload: { 
+        message: errorMessage,
+        status: error.response?.status 
+      },
     });
   }
 };
@@ -250,7 +263,22 @@ export const verifyResetPassowrdOTP = ({
 
 export const logout = () => {
   return async (dispatch) => {
-    dispatch({ type: actionTypes.LOGOUT });
-    localStorage.clear();
+    try {
+      // Clear the token from API instance
+      delete api.defaults.headers.common['Authorization'];
+      
+      // Clear localStorage
+      localStorage.removeItem("jwt");
+      
+      // Dispatch logout action
+      dispatch({ type: actionTypes.LOGOUT });
+      
+      console.log("Logout successful");
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Even if there's an error, we should still clear local state
+      localStorage.removeItem("jwt");
+      dispatch({ type: actionTypes.LOGOUT });
+    }
   };
 };

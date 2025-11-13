@@ -121,7 +121,7 @@ const Profile = () => {
               </div>
               {/* <div className="flex items-center">
                 <p className="w-[8rem]">Mobile :</p>
-                <p>+918987667899</p>
+                <p>918200468500</p>
               </div> */}
               <div className="flex items-center">
                 <p className="w-[8rem]">Password :</p>
@@ -163,10 +163,10 @@ const Profile = () => {
                 <p className="w-[8rem]">Email :</p>
                 <p>{auth.user.email}</p>
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <p className="w-[8rem]">Mobile :</p>
-                <p>+918987667899</p>
-              </div>
+                <p>+918200468500</p>
+              </div> */}
               <div>
                 <Dialog>
                   <DialogTrigger>

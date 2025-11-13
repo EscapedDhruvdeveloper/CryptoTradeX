@@ -22,6 +22,7 @@ import WithdrawalAdmin from "./Admin/Withdrawal/WithdrawalAdmin";
 import Activity from "./pages/Activity/Activity";
 import SearchCoin from "./pages/Search/Search";
 import { shouldShowNavbar } from "./Util/shouldShowNavbar";
+import Compare from "./pages/Compare/Compare";
 
 
 const routes = [
@@ -36,7 +37,8 @@ const routes = [
   { path: "/watchlist", role: "ROLE_USER" },
   { path: "/profile", role: "ROLE_USER" },
   { path: "/search", role: "ROLE_USER" },
-  { path: "/admin/withdrawal", role: "ROLE_ADMIN" }
+  { path: "/compare", role: "ROLE_USER" },
+  { path: "/admin/withdrawal", role: "ROLE_ADMIN" },
 ];
 
 function App() {
@@ -67,6 +69,7 @@ dispatch(getUser(localStorage.getItem("jwt")))
             <Route element={<StockDetails />} path="/market/:id" />
             <Route element={<Watchlist />} path="/watchlist" />
             <Route element={<Profile />} path="/profile" />
+            <Route element={<Compare />} path="/compare" />
             <Route element={<SearchCoin />} path="/search" />
             {auth.user.role=="ROLE_ADMIN"&&<Route element={<WithdrawalAdmin />} path="/admin/withdrawal" />}
             <Route element={<Notfound />} path="*" />

@@ -1,0 +1,76 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor User
+
+package "System Features" {
+    
+    package "Authentication & Security" {
+        usecase "Register" as UC_Register
+        usecase "Login" as UC_Login
+        usecase "Enable 2FA" as UC_Enable2FA
+        usecase "Verify 2FA" as UC_Verify2FA
+        usecase "Reset Password" as UC_ResetPassword
+        usecase "Logout" as UC_Logout
+    }
+
+    package "Profile Management" {
+        usecase "View Profile" as UC_ViewProfile
+        usecase "Update Profile" as UC_UpdateProfile
+    }
+
+    package "Wallet Management" {
+        usecase "Deposit Funds" as UC_Deposit
+        usecase "Withdraw Funds" as UC_Withdraw
+        usecase "Wallet to Wallet Transfer" as UC_Transfer
+        usecase "View Wallet Transactions" as UC_WalletTx
+    }
+
+    package "Portfolio & Trading" {
+        usecase "View Portfolio" as UC_Portfolio
+        usecase "View Trading History" as UC_TradingHistory
+        usecase "Place Trade Order [Buy/Sell]" as UC_Trade
+    }
+
+    package "Coin Market" {
+        usecase "View Coin Market Data" as UC_MarketData
+        usecase "Search Coin" as UC_SearchCoin
+        usecase "Add Coin to Watchlist" as UC_AddWatchlist
+        usecase "View Watchlist" as UC_ViewWatchlist
+    }
+
+    package "AI Assistant" {
+        usecase "Ask Chatbot Questions" as UC_Chatbot
+    }
+}
+
+' Connections
+User --> UC_Register
+User --> UC_Login
+User --> UC_Enable2FA
+User --> UC_Verify2FA
+User --> UC_ResetPassword
+User --> UC_Logout
+
+User --> UC_ViewProfile
+User --> UC_UpdateProfile
+
+User --> UC_Deposit
+User --> UC_Withdraw
+User --> UC_Transfer
+User --> UC_WalletTx
+
+User --> UC_Portfolio
+User --> UC_TradingHistory
+User --> UC_Trade
+
+User --> UC_MarketData
+User --> UC_SearchCoin
+User --> UC_AddWatchlist
+User --> UC_ViewWatchlist
+
+User --> UC_Chatbot
+
+@enduml

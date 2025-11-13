@@ -91,7 +91,7 @@ const AccountVarificationForm = ({handleSubmit}) => {
         </div>
         {/* <div className="flex justify-between items-center">
           <p className="">Mobile :</p>
-          <p>+918987667899</p>
+          <p>918200468500</p>
           
           <Button onClick={() => handleSendOtp("MOBILE")}>Sent OTP</Button>
         </div> */}

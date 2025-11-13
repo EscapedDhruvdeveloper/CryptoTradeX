@@ -47,7 +47,7 @@ const TreadingHistory = () => {
         <TableHeader className="py-9">
           <TableRow className="sticky top-0 left-0 right-0 bg-background ">
             <TableHead className="py-3">Date & Time</TableHead>
-            <TableHead>Treading Pair</TableHead>
+            <TableHead>Trading Pair</TableHead>
             <TableHead>Buy Price</TableHead>
             <TableHead>Selling Price</TableHead>
             <TableHead>Order Type</TableHead>
